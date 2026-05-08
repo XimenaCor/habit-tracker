@@ -8,8 +8,8 @@ data class Habit(
     val habit_id: String = "",
     val user_id: String = "",
     val name: String = "",
-    val motivational_phrase: String? = "",
-    val image_url: String? = "",
+    val motivational_phrase: String? = null,
+    val image_url: String? = null,
 
     val min_per_week: Int = 0,
     val max_per_week: Int = 0,

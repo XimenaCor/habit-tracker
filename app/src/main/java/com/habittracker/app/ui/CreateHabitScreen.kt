@@ -18,11 +18,12 @@ import com.habittracker.app.data.model.Habit
 import com.habittracker.app.data.model.TimeBlock
 import java.util.UUID
 import androidx.compose.runtime.LaunchedEffect
+import androidx.navigation.NavController
 import com.habittracker.app.ui.notifications.HabitScheduler
 import com.habittracker.app.ui.notifications.NotificationHelper
 
 @Composable
-fun CreateHabitScreen(viewModel: HabitViewModel) {
+fun CreateHabitScreen(viewModel: HabitViewModel, navController: NavController) {
 
     var name by remember { mutableStateOf("") }
     var min_per_week by remember { mutableStateOf(0) }
@@ -119,13 +120,7 @@ fun CreateHabitScreen(viewModel: HabitViewModel) {
             )
 
             viewModel.addHabit(habit, context)
-
-            name = ""
-            min_per_week = 0
-            max_per_week = 0
-            time_block = TimeBlock.MORNING
-            target_time_minutes = null
-
+            navController.navigate("homepage")
         }) {
             Text("Crear Habito")
         }
