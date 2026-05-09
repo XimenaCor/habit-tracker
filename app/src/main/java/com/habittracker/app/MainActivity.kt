@@ -21,6 +21,11 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             val navController = rememberNavController()
+            val viewModel: HabitViewModel = viewModel(
+                factory = viewModelFactory {
+                    initializer { HabitViewModel(HabitRepository()) }
+                }
+            )
 
             NavHost(
                 navController = navController,
@@ -30,7 +35,12 @@ class MainActivity : ComponentActivity() {
                     LoginScreen(navController = navController)
                 }
                 composable("homepage") {
-                    HomepageScreen(navController = navController)
+                    val viewModel: HabitViewModel = viewModel(
+                        factory = viewModelFactory {
+                            initializer { HabitViewModel(HabitRepository()) }
+                        }
+                    )
+                    HomepageScreen(navController = navController, viewModel = viewModel)
                 }
                 composable("create_habit") {
                     val viewModel: HabitViewModel = viewModel(
@@ -38,10 +48,7 @@ class MainActivity : ComponentActivity() {
                             initializer { HabitViewModel(HabitRepository()) }
                         }
                     )
-                    CreateHabitScreen(
-                        viewModel = viewModel,
-                        navController = navController
-                    )
+                    CreateHabitScreen(navController = navController, viewModel = viewModel)
                 }
                 composable("daily_registration") {
                     DailyRegistrationScreen()
