@@ -27,10 +27,10 @@ class MainActivity : ComponentActivity() {
                 startDestination = "login"
             ) {
                 composable("login") {
-                    LoginScreen()
+                    LoginScreen(navController = navController)
                 }
                 composable("homepage") {
-                    HomepageScreen()
+                    HomepageScreen(navController = navController)
                 }
                 composable("create_habit") {
                     val viewModel: HabitViewModel = viewModel(
