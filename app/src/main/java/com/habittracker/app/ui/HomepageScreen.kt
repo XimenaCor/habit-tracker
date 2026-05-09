@@ -26,6 +26,12 @@ fun HomepageScreen(navController: NavController) {
     ) {
         Text("Homepage")
 
+        Button(onClick = {
+            navController.navigate("create_habit")
+        }) {
+            Text("Crear hábito")
+        }
+
         // TODO: quitar antes de producción
         Button(onClick = {
             auth.signOut()

@@ -19,6 +19,7 @@ import com.habittracker.app.data.model.TimeBlock
 import java.util.UUID
 import androidx.compose.runtime.LaunchedEffect
 import androidx.navigation.NavController
+import com.google.firebase.auth.FirebaseAuth
 import com.habittracker.app.ui.notifications.HabitScheduler
 import com.habittracker.app.ui.notifications.NotificationHelper
 
@@ -110,7 +111,7 @@ fun CreateHabitScreen(viewModel: HabitViewModel, navController: NavController) {
         Button(onClick = {
             val habit = Habit(
                 habit_id = UUID.randomUUID().toString(),
-                user_id = "",
+                user_id = FirebaseAuth.getInstance().currentUser?.uid ?:"",
                 name = name,
                 min_per_week = min_per_week,
                 max_per_week = max_per_week,
