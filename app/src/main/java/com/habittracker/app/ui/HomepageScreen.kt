@@ -39,4 +39,7 @@ fun HomepageScreen(navController: NavController, viewModel: HabitViewModel) {
             }
         }
     }
+    Button(onClick = { navController.navigate("daily_registration") }) {
+        Text("Registrar hábitos")
+    }
 }
