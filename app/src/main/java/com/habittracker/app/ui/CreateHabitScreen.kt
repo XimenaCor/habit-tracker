@@ -51,6 +51,8 @@ fun CreateHabitScreen(viewModel: HabitViewModel, navController: NavController) {
     var target_time_minutes by remember { mutableStateOf<Int?>(null) }
     var motivational_phrase by remember { mutableStateOf("") }
     val context = androidx.compose.ui.platform.LocalContext.current
+    var showError by remember { mutableStateOf(false) }
+    var errorMessage by remember { mutableStateOf("") }
 
     val permissionLauncher = rememberLauncherForActivityResult(
         ActivityResultContracts.RequestPermission()
@@ -221,6 +223,22 @@ fun CreateHabitScreen(viewModel: HabitViewModel, navController: NavController) {
         // Botón guardar
         Button(
             onClick = {
+                if (name.isBlank()) {
+                    errorMessage = "El nombre del hábito es obligatorio."
+                    showError = true
+                    return@Button
+                }
+                if (min_per_week == 0 || max_per_week == 0) {
+                    errorMessage = "La frecuencia mínima y máxima deben ser mayores a 0."
+                    showError = true
+                    return@Button
+                }
+                if (min_per_week > max_per_week) {
+                    errorMessage = "El mínimo no puede ser mayor que el máximo."
+                    showError = true
+                    return@Button
+                }
+                showError = false
                 val habit = Habit(
                     habit_id = UUID.randomUUID().toString(),
                     user_id = FirebaseAuth.getInstance().currentUser?.uid ?: "",
@@ -239,6 +257,15 @@ fun CreateHabitScreen(viewModel: HabitViewModel, navController: NavController) {
             shape = RoundedCornerShape(12.dp)
         ) {
             Text("Crear hábito")
+        }
+
+        if (showError) {
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = errorMessage,
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.error
+            )
         }
 
         Spacer(modifier = Modifier.height(32.dp))

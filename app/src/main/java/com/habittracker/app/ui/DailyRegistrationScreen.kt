@@ -146,6 +146,7 @@ fun DailyRegistrationScreen(viewModel: HabitViewModel, navController: NavControl
         currentHabitId = next?.habit_id ?: ""
         currentStep = RegistrationStep.MainQuestion
         matchedTimeBlock = false
+        offsetX = 0f
         viewModel.resetDraft()
     }
 
@@ -257,41 +258,6 @@ fun DailyRegistrationScreen(viewModel: HabitViewModel, navController: NavControl
                         )
                     )
             )
-
-            // Pregunta secundaria — centrada en la card
-            when (currentStep) {
-                is RegistrationStep.TimeBlockQuestion -> {
-                    Column(
-                        modifier = Modifier
-                            .align(Alignment.Center)
-                            .padding(32.dp),
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        Text(
-                            text = "¿Fue durante tu bloque de tiempo preferido?",
-                            style = MaterialTheme.typography.titleLarge,
-                            color = Color.White,
-                            textAlign = TextAlign.Center
-                        )
-                    }
-                }
-                is RegistrationStep.TargetTimeQuestion -> {
-                    Column(
-                        modifier = Modifier
-                            .align(Alignment.Center)
-                            .padding(32.dp),
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        Text(
-                            text = "¿Fue cerca de tu hora objetivo?",
-                            style = MaterialTheme.typography.titleLarge,
-                            color = Color.White,
-                            textAlign = TextAlign.Center
-                        )
-                    }
-                }
-                else -> { }
-            }
 
             // Frase y nombre — centrados en la card
             Column(
