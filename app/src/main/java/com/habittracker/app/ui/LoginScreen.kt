@@ -1,6 +1,7 @@
 package com.habittracker.app.ui
 
 import android.app.Activity
+import android.content.Context
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
@@ -63,7 +64,14 @@ fun LoginScreen(navController: NavController) {
                 // 3. Autenticar con Firebase
                 auth.signInWithCredential(credential)
                     .addOnSuccessListener {
-                        navController.navigate("homepage")
+                        val prefs = context.getSharedPreferences("habit_prefs", Context.MODE_PRIVATE)
+                        val seenPhilosophy = prefs.getBoolean("seen_philosophy", false)
+                        if (seenPhilosophy) {
+                            navController.navigate("homepage")
+                        } else {
+                            prefs.edit().putBoolean("seen_philosophy", true).apply()
+                            navController.navigate("philosophy")
+                        }
                     }
                     .addOnFailureListener {
                         android.util.Log.e("LoginScreen", "Error: ${it.message}")

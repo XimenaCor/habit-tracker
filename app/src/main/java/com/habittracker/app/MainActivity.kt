@@ -15,6 +15,8 @@ import com.habittracker.app.ui.DailyRegistrationScreen
 import com.habittracker.app.ui.HabitViewModel
 import com.habittracker.app.ui.HomepageScreen
 import com.habittracker.app.ui.LoginScreen
+import com.habittracker.app.ui.PhilosophyScreen
+import com.habittracker.app.ui.SettingsScreen
 import com.habittracker.app.ui.theme.HabitTrackerTheme
 
 class MainActivity : ComponentActivity() {
@@ -51,6 +53,16 @@ class MainActivity : ComponentActivity() {
                         DailyRegistrationScreen(
                             navController = navController,
                             viewModel = viewModel
+                        )
+                    }
+                    composable("philosophy") {
+                        PhilosophyScreen(
+                            navController = navController
+                        )
+                    }
+                    composable("settings") {
+                        SettingsScreen(
+                            navController = navController
                         )
                     }
                 }
