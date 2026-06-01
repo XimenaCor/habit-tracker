@@ -18,7 +18,6 @@ class HabitViewModel(
 
     private val _habits = MutableStateFlow<List<Habit>>(emptyList())
     val habits: StateFlow<List<Habit>> = _habits
-
     private val _pendingHabits = MutableStateFlow<List<Habit>>(emptyList())
 
     // Draft temporal del evento que se está construyendo
@@ -94,13 +93,13 @@ class HabitViewModel(
 
         viewModelScope.launch {
             repository.addEvent(event)
-            _currentDraft = null // limpiamos el draft al completar
+            _currentDraft = null // se limpia el draft al completar
             loadPendingHabits()
         }
     }
 
     // Resetea el draft al entrar a DailyRegistrationScreen
-    // Evita que un draft huérfano de una sesión anterior contamine el registro
+    // Evita que un draft "huerfano" de una sesion anterior contamine el registro
     fun resetDraft() {
         _currentDraft = null
     }

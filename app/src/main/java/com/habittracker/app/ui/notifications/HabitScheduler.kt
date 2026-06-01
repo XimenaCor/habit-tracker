@@ -34,7 +34,7 @@ object HabitScheduler {
                 }
                 val message = "Tienes ${habitsInBlock.size} hábitos que mejorar esta $blockName"
 
-                // 2. Construir el momento exacto de la alarma
+                // 2. Construyo el momento exacto de la alarma
                 val notificationHour = getNotificationHour(timeBlock)
                 val calendar = Calendar.getInstance().apply {
                     set(Calendar.HOUR_OF_DAY, notificationHour)
@@ -46,13 +46,13 @@ object HabitScheduler {
                     calendar.add(Calendar.DAY_OF_YEAR, 1)
                 }
 
-                // 3. Construir el Intent hacia HabitReminderReceiver
+                // 3. Construyo el Intent hacia HabitReminderReceiver
                 val intent = Intent(context, HabitReminderReceiver::class.java).apply {
                     putExtra("message", message)
                     putExtra("notificationId", timeBlock.ordinal)
                 }
 
-                // 4. Envolver el Intent en un PendingIntent
+                // 4. Se envuelve el Intent en un PendingIntent
                 val pendingIntent = PendingIntent.getBroadcast(
                     context,
                     timeBlock.ordinal,
@@ -60,7 +60,7 @@ object HabitScheduler {
                     PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
                 )
 
-                // 5. Programar la alarma como repetición diaria
+                // 5. Se programa la alarma como repetición diaria
                 alarmManager.setRepeating(
                     AlarmManager.RTC_WAKEUP,
                     calendar.timeInMillis,

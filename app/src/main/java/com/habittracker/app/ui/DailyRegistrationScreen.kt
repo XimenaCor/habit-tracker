@@ -106,14 +106,14 @@ fun DailyRegistrationScreen(viewModel: HabitViewModel, navController: NavControl
             } else {
                 // Ya registró todo
                 Text(
-                    text = "Todo al día",
+                    text = "Por ahora es suficiente",
                     style = MaterialTheme.typography.headlineLarge,
                     color = MaterialTheme.colorScheme.onBackground,
                     textAlign = TextAlign.Center
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = "Has registrado todos tus hábitos de hoy.",
+                    text = "No queda nada por registrar en este momento.",
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     textAlign = TextAlign.Center
@@ -132,7 +132,7 @@ fun DailyRegistrationScreen(viewModel: HabitViewModel, navController: NavControl
 
     val today = SimpleDateFormat("yyyy-MM-dd", Locale.US).format(Date())
 
-    // Fondo según time_block
+    // Fondo para time_block
     val cardBackground = when (currentStep) {
         is RegistrationStep.MainQuestion -> Color(0xFFEEEDFE) // Purple50
         else -> Color(0xFFCECBF6) // Purple100
@@ -162,7 +162,7 @@ fun DailyRegistrationScreen(viewModel: HabitViewModel, navController: NavControl
                     detectHorizontalDragGestures(
                         onDragEnd = {
                             when {
-                                // Swipe derecho → YES
+                                // Swipe derecho - YES
                                 offsetX > swipeThresholdPx -> {
                                     offsetX = 0f
                                     viewModel.startDraft(
@@ -171,7 +171,7 @@ fun DailyRegistrationScreen(viewModel: HabitViewModel, navController: NavControl
                                     )
                                     currentStep = RegistrationStep.TimeBlockQuestion
                                 }
-                                // Swipe izquierdo → NO
+                                // Swipe izquierdo - NO
                                 offsetX < -swipeThresholdPx -> {
                                     offsetX = 0f
                                     viewModel.addEvent(Event(
@@ -186,7 +186,7 @@ fun DailyRegistrationScreen(viewModel: HabitViewModel, navController: NavControl
                                     ))
                                     nextHabit()
                                 }
-                                // No llegó al threshold → vuelve al centro
+                                // No llegó al threshold - vuelve al centro
                                 else -> offsetX = 0f
                             }
                         },
@@ -324,7 +324,7 @@ fun DailyRegistrationScreen(viewModel: HabitViewModel, navController: NavControl
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            // ✖ NO
+            // NO
             IconButton(
                 onClick = {
                     when (currentStep) {
@@ -367,7 +367,7 @@ fun DailyRegistrationScreen(viewModel: HabitViewModel, navController: NavControl
                 )
             }
 
-            // ⏳ LATER
+            // LATER
             OutlinedIconButton(
                 onClick = { nextHabit() },
                 modifier = Modifier.size(48.dp)
@@ -379,7 +379,7 @@ fun DailyRegistrationScreen(viewModel: HabitViewModel, navController: NavControl
                 )
             }
 
-            // ♥ YES
+            // YES
             IconButton(
                 onClick = {
                     when (currentStep) {

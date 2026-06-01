@@ -154,7 +154,7 @@ fun HomepageScreen(navController: NavController, viewModel: HabitViewModel) {
                 ) {
                     TextButton(onClick = { navController.navigate("daily_registration") }) {
                         Text(
-                            text = "Registrar hábitos de hoy",
+                            text = "Registrar progreso de hoy",
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.primary
                         )

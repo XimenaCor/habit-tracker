@@ -27,14 +27,14 @@ import androidx.work.OneTimeWorkRequestBuilder
 
 class MainActivity : ComponentActivity() {
     private fun scheduleNightlyWorker() {
-        // Calcula cuántos milisegundos faltan para la medianoche
+        // Calcula cuantos milisegundos faltan para la medianoche
         val now = System.currentTimeMillis()
         val calendar = java.util.Calendar.getInstance().apply {
             set(java.util.Calendar.HOUR_OF_DAY, 0)
             set(java.util.Calendar.MINUTE, 0)
             set(java.util.Calendar.SECOND, 0)
             set(java.util.Calendar.MILLISECOND, 0)
-            add(java.util.Calendar.DAY_OF_YEAR, 1) // siempre la próxima medianoche
+            add(java.util.Calendar.DAY_OF_YEAR, 1) // siempre la prxxima medianoche
         }
         val delay = calendar.timeInMillis - now
 

@@ -106,7 +106,7 @@ fun LoginScreen(navController: NavController) {
 
         // Tagline
         Text(
-            text = "Antes de mejorar un hábito,\nprimero establécelo.",
+            text = "Antes de mejorar un hábito,\nprimero debes construirlo.",
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             textAlign = TextAlign.Center

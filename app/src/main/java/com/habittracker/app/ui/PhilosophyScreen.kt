@@ -27,7 +27,7 @@ fun PhilosophyScreen(navController: NavController) {
         verticalArrangement = Arrangement.Center
     ) {
         Text(
-            text = "Antes de mejorar un hábito,\nprimero establécelo.",
+            text = "Antes de mejorar un hábito,\nprimero debes construirlo.",
             style = MaterialTheme.typography.headlineMedium,
             color = MaterialTheme.colorScheme.onBackground
         )
@@ -42,10 +42,19 @@ fun PhilosophyScreen(navController: NavController) {
 
         Spacer(modifier = Modifier.height(32.dp))
 
+        Text(
+            text = "Habit Tracker está diseñado para ayudarte a observar tus hábitos antes de intentar optimizarlos.",
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
         listOf(
-            "Defines hábitos flexibles con un rango semanal.",
-            "Cada día registras si lo hiciste.",
-            "La app observa tus patrones, no te juzga.",
+            "Define una frecuencia semanal realista.",
+            "Añade una motivación para recordar por qué empezaste",
+            "Registra cada día lo que ocurrió.",
+            "Recibe recordatorios solo cuando los necesites",
             "Con el tiempo, los datos hablan solos."
         ).forEach { item ->
             Row(

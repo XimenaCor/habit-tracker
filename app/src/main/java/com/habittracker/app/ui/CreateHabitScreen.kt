@@ -103,7 +103,7 @@ fun CreateHabitScreen(viewModel: HabitViewModel, navController: NavController) {
         OutlinedTextField(
             value = motivational_phrase,
             onValueChange = { motivational_phrase = it },
-            label = { Text("Frase motivacional (opcional)") },
+            label = { Text("Motivo Personal (opcional)") },
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(12.dp)
         )
@@ -112,7 +112,7 @@ fun CreateHabitScreen(viewModel: HabitViewModel, navController: NavController) {
 
         // Frecuencia
         Text(
-            text = "Frecuencia semanal",
+            text = "Objetivo semanal",
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onBackground
         )
