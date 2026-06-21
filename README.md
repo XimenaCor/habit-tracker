@@ -1,30 +1,41 @@
 # Habit Tracker
 
-This project is a minimalist habit tracking application designed to be as non-intrusive as possible. Instead of relying on constant notifications or gamification, it focuses on helping users build consistency through simple, low-friction interactions.
+A minimalist Android habit tracking app built around a simple conviction: before optimizing a habit, you first need to establish it.
 
-The core idea behind the app is that before improving a habit, you first need to establish it. For that reason, the system avoids rigid schedules and strict requirements. Users define flexible goals and preferences, and the app gently supports them in maintaining regularity over time.
+Most habit trackers punish inconsistency. This one doesn't. There are no streaks to break, no scores to lose, no gamification layer pushing you toward a number. Instead, the app focuses on making the act of showing up as low-friction as possible — because consistency over time matters more than perfect daily performance.
 
-Daily interaction is intentionally lightweight. Users register their habits through quick, intuitive actions, reducing the effort required to stay consistent. The goal is not to optimize performance from day one, but to make the act of showing up as easy as possible.
+## Features
 
-Over time, the application captures patterns in user behavior while remaining in the background. Rather than forcing change, it aims to provide a clearer understanding of how habits are actually formed and maintained.
+- **Google Sign-In** — authentication via Firebase Auth
+- **Habit management** — create and store habits with flexible goals and preferences
+- **Daily check-in** — register each day as `YES`, `NO`, or `LATER` with minimal interaction
+- **Persistent event log** — all check-ins stored in Cloud Firestore and recovered correctly after app restart
+- **Smart notifications** — grouped daily reminders (max 3/day at 8:00, 14:00, 20:00) via AlarmManager, with background data generation handled by WorkManager
+- **Philosophy screen** — shown once on first launch via SharedPreferences, explaining the app's approach to habit building
 
----
+## Tech stack
 
-## Tech Stack
+| Layer | Technology |
+|---|---|
+| Language | Kotlin |
+| UI | Jetpack Compose |
+| Architecture | MVVM with shared ViewModel |
+| Database | Cloud Firestore (`users/{userId}/habits`, `users/{userId}/events`) |
+| Auth | Firebase Authentication (Google Sign-In) |
+| Background work | WorkManager (nightly NO_DATA generation) |
+| Notifications | AlarmManager |
+| Navigation | NavHost |
+| State management | StateFlow + Coroutines |
 
-- Android (Kotlin)
-- Firebase Firestore
+## Project structure
 
----
+```
+app/
+├── data/          # models, repositories, Firestore integration
+├── ui/            # Compose screens and components
+└── docs/          # project documentation
+```
 
-## Project Status
+## Status
 
-This project is currently in an early development stage, focused on defining and implementing the data layer.
-
----
-
-## Project Structure
-
-- `data/` → data models and repositories
-- `ui/` → user interface components
-- `docs/` → project documentation  
+Core functionality is complete and verified end to end — authentication, habit creation, daily check-ins, event persistence, notifications, and background processing all working as expected. Active development ongoing.
